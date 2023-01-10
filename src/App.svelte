@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-
-  let clicks = 0;
+  let clicks = 500;
 
   onMount(() => {
     document.getElementById("monkey").onclick = () => {
@@ -17,6 +16,17 @@
         clicks += 1
       }, 3000)
     }
+
+    document.getElementById("buy-farmer").onclick = () => {
+      if (!(clicks >= 50)) return
+      clicks -= 50
+
+      setInterval(() => {
+        clicks += 5000
+      })
+    }
+
+
    })
 </script>
 
@@ -30,6 +40,11 @@
         <h3>Autoclicker</h3> 
         <h3>Cost 10 bananas</h3>
         <button id="buy-autoclicker">Buy</button>
+      </div>
+      <div id="farmers" class="upgrade">
+        <h3>Farmers</h3> 
+        <h3>Cost 50 bananas</h3>
+        <button id="buy-farmer">Buy</button>
       </div>
     </div>
   </div>
@@ -80,7 +95,7 @@
   }
 
   .upgrade {
-    padding: 30px;
+    padding: 10px;
     background-color: purple;
     border: 5px solid;
   }
