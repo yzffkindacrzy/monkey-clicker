@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  let bananas = 0;
+  let bananas;
+
+  if (localStorage.getItem("bananas")) { bananas = parseInt(localStorage.getItem("bananas")) } else {bananas = 0}
 
   onMount(() => {
     document.getElementById("monkey").onclick = () => {
@@ -34,6 +36,10 @@
         bananas += 10;
       }, 500);
     };
+
+    window.addEventListener("unload", () => {
+        localStorage.setItem("bananas", bananas)
+    })
   });
 </script>
 
@@ -41,6 +47,7 @@
   <div class="container">
     <h1>Monkey Clicker</h1>
     <h2>You have {bananas} bananas</h2>
+    <h3>Made by Yusof</h3>
     <img
       alt="monkey"
       id="monkey"
@@ -66,6 +73,7 @@
         <button id="buy-zookeeper">Buy</button>
       </div>
     </div>
+    <button on:click={() => {bananas = 0}} style="background-color: red;">Reset Bananas</button>
   </div>
 </main>
 
