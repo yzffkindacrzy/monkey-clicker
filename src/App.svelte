@@ -40,6 +40,15 @@
       }, 500);
     };
 
+    document.getElementById("buy-fbi").onclick = () => {
+      if (!(bananas >= 100000)) return;
+      bananas -= 100000;
+
+      setInterval(() => {
+        bananas += 3500;
+      }, 1000 * 0.5)
+    }
+
     window.addEventListener("unload", () => {
         localStorage.setItem("bananas", bananas)
     })
@@ -74,6 +83,11 @@
         <h3>Zookeeper</h3>
         <h3>Cost 250 bananas</h3>
         <button id="buy-zookeeper">Buy</button>
+      </div>
+      <div id="fbi" class="upgrade">
+        <h3>FBI</h3>
+        <h3>Cost 100,000 bananas</h3>
+        <button id="buy-fbi">Buy</button>
       </div>
     </div>
     <button on:click={() => {bananas = 0}} style="background-color: red;">Reset Bananas</button>
