@@ -3,6 +3,8 @@
 
   let bananas;
 
+  let devMode = true;
+
   if (localStorage.getItem("bananas")) { bananas = parseInt(localStorage.getItem("bananas")) } else {bananas = 0}
 
   onMount(() => {
@@ -41,12 +43,12 @@
     };
 
     document.getElementById("buy-fbi").onclick = () => {
-      if (!(bananas >= 100000)) return;
-      bananas -= 100000;
+      if (!(bananas >= 1500000)) return;
+      bananas -= 1500000;
 
       setInterval(() => {
-        bananas += 3500;
-      }, 1000 * 0.5)
+        bananas += 20000;
+      }, 1)
     }
 
     window.addEventListener("unload", () => {
@@ -86,17 +88,29 @@
       </div>
       <div id="fbi" class="upgrade">
         <h3>FBI</h3>
-        <h3>Cost 100,000 bananas</h3>
+        <h3>Cost ??? bananas</h3>
         <button id="buy-fbi">Buy</button>
       </div>
     </div>
-    <button on:click={() => {bananas = 0}} style="background-color: red;">Reset Bananas</button>
+    {#if devMode}
+      <div id="devtools">
+        <h1>Devtools</h1>
+        <button on:click={() => {bananas += 100000}} style="background-color: red;">Add 100000 Bananas</button>
+        <button on:click={() => {bananas = 0}} style="background-color: red;">Reset Bananas</button>
+      </div>
+    {/if}
   </div>
 </main>
 
 <style>
   :root {
     background-color: rgb(255, 255, 255);
+  }
+
+  #devtools {
+    border: 5px solid;
+    margin: auto 15;
+    display: inline-block;
   }
 
   button {
