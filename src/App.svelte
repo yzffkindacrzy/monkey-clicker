@@ -8,6 +8,9 @@
   onMount(() => {
     document.getElementById("monkey").onclick = () => {
       bananas += 1;
+
+      var audio = new Audio('pop.mp3');
+      audio.play();
     };
 
     document.getElementById("buy-autoclicker").onclick = () => {
@@ -125,6 +128,7 @@
 
   #monkey {
     transition: 0.3s;
+    border: 2px solid;
   }
 
   #monkey:hover {
