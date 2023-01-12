@@ -3,7 +3,7 @@
 
   let bananas;
 
-  let devMode = true;
+  let devMode = false;
 
   if (localStorage.getItem("bananas")) { bananas = parseInt(localStorage.getItem("bananas")) } else {bananas = 0}
 
